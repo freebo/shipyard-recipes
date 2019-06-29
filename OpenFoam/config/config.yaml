@@ -1,0 +1,24 @@
+batch_shipyard:
+  storage_account_settings: shipsa
+global_resources:
+  docker_images:
+  - alfpark/openfoam:4.0-icc-intelmpi
+  volumes:
+        azureblob_input_vol:
+        volume_driver: azureblob
+        storage_account_settings: shipsa
+        azure_blob_container_name: input
+        container_path: $AZ_BATCH_NODE_SHARED_DIR/azblob/input
+        bind_options: rw
+      azureblob_output_vol:
+        volume_driver: azureblob
+        storage_account_settings: shipsa
+        azure_blob_container_name: output
+        container_path: $AZ_BATCH_NODE_SHARED_DIR/azblob/output
+        bind_options: rw
+
+# volumes:
+#    shared_data_volumes:
+#     glustervol:
+#        container_path: $AZ_BATCH_NODE_SHARED_DIR/gfs
+#       volume_driver: glusterfs_on_compute

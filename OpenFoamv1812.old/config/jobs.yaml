@@ -1,0 +1,18 @@
+job_specifications:
+- id: openfoamjob
+  auto_complete: true
+  auto_scratch: true
+  shm_size: 256m
+  tasks:
+  - docker_image: alfpark/openfoam:4.0-icc-intelmpi
+    shared_data_volumes:
+    - azurefile_vol
+    multi_instance:
+      num_instances: pool_current_low_priority
+    #command:  /opt/OpenFOAM/run_sample.sh
+    #command: /mnt/resource/batch/tasks/mounts/azfile-ofdemosa-ofdemofs/Input/OFtest/run_job.sh
+    command: /mnt/resource/batch/tasks/mounts/azfile-ofdemosa-ofdemofs/Input/OFtest/run_bgfs_sample.sh
+
+
+
+
