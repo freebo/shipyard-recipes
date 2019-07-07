@@ -2,8 +2,8 @@ batch_shipyard:
   storage_account_settings: ofdemosa
 global_resources:
   docker_images:
-  - alfpark/openfoam:4.0-icc-intelmpi
-  #- freebo/openfoamplus-v1812-intelmpi
+  #- alfpark/openfoam:4.0-icc-intelmpi
+  - freebo/openfoamplus-v1812-intelmpi
   volumes:
     shared_data_volumes:
       azurefile_vol:
