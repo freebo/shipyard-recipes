@@ -34,7 +34,7 @@ ENV INTELCOMPILERVARS=/opt/intel2/bin/compilervars.sh
 
 # add openfoam with env vars
 ADD openfoamplus-1812-icc-intelmpi.tar.gz /opt/OpenFOAM
-ENV OPENFOAM_VER=4.0 FOAM_INST_DIR=/opt/OpenFOAM PATH=${PATH}:/usr/lib64/qt4/bin
+ENV OPENFOAM_VER=v1812 FOAM_INST_DIR=/opt/OpenFOAM PATH=${PATH}:/usr/lib64/qt4/bin
 ENV OPENFOAM_DIR=${FOAM_INST_DIR}/OpenFOAM-${OPENFOAM_VER}
 
 # copy sample run script

@@ -1,21 +1,15 @@
 #!/usr/bin/env bash
 
-set -e
-set -o pipefail
-set -x
+#set -e
+#set -o pipefail
+#set -x
 echo "Starting!"
 echo "Source intel64"
 
-# set up mpi and set up openfoam env
+# set up openfoam env
 
-source $INTELCOMPILERVARS intel64
-echo "source mpivars"
-source /opt/intel/compilers_and_libraries/linux/mpi/bin64/mpivars.sh
-export MPI_ROOT=$I_MPI_ROOT
-OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-v1812
 echo "Source bashrc"
 
-cat $OPENFOAM_DIR/etc/bashrc
 source $OPENFOAM_DIR/etc/bashrc
 
 # copy sample into glusterfs shared area
@@ -48,5 +42,14 @@ cd pitzDaily
 blockMesh
 decomposePar -force
 
+#set up mpi
+source $INTELCOMPILERVARS intel64
+echo "source mpivars"
+source /opt/intel2/compilers_and_libraries_2018.5.274/linux/mpi/intel64/bin/mpivars.sh
+export MPI_ROOT=$I_MPI_ROOT
+
 # execute mpi job
+echo "mpirun -np $np -ppn $ppn -hosts $AZ_BATCH_HOST_LIST simpleFoam -parallel"
+sleep 300
+
 mpirun -np $np -ppn $ppn -hosts $AZ_BATCH_HOST_LIST simpleFoam -parallel
