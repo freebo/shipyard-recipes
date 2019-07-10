@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 #Put this in the input dir
 
-echo "Sleeping 20"
-sleep 20
-echo "Starting...."
-set -e
-set -o pipefail
+#set -e
+#set -o pipefail
 
 # set up mpi and set up openfoam env
-source $INTELCOMPILERVARS intel64
+
+source $INTELCOMPILERVARS intel64   
 source /opt/intel/compilers_and_libraries/linux/mpi/bin64/mpivars.sh
 export MPI_ROOT=$I_MPI_ROOT
-OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-4.0
-INPUT_DIR=$AZ_BATCH_NODE_SHARED_DIR/azblob/input
-OUTPUT_DIR=$AZ_BATCH_NODE_SHARED_DIR/azblob/output
+
+export INPUT_DIR=/mnt/resource/batch/tasks/shared/azfile/Input
+export OUTPUT_DIR=/mnt/resource/batch/tasks/shared/azfile/Output
 JOB=OFtest
+
+
 source $OPENFOAM_DIR/etc/bashrc
 
 # copy sample into BeeGFS shared area
@@ -23,7 +23,6 @@ cd $BGFS_DIR
 cp -r $INPUT_DIR/$JOB .
 #cp $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDailyExptInlet/system/decomposeParDict $JOB_DIR/system/
 
-echo "Copy done"
 # get nodes and compute number of processors
 IFS=',' read -ra HOSTS <<< "$AZ_BATCH_HOST_LIST"
 nodes=${#HOSTS[@]}
@@ -41,10 +40,11 @@ else
 fi
 
 # decompose
-echo "Decompose"
+
 cd $JOB
-blockMesh
+#blockMesh
 decomposePar -force
 
 # execute mpi job
-mpirun -np $np -ppn $ppn -hosts $AZ_BATCH_HOST_LIST simpleFoam -parallel
+#mpirun -np $np -ppn $ppn -hosts $AZ_BATCH_HOST_LIST simpleFoam -parallel
+pisoFoam

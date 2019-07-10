@@ -50,6 +50,6 @@ export MPI_ROOT=$I_MPI_ROOT
 
 # execute mpi job
 echo "mpirun -np $np -ppn $ppn -hosts $AZ_BATCH_HOST_LIST simpleFoam -parallel"
-sleep 300
+sleep 1500
 
-mpirun -np $np -ppn $ppn -hosts $AZ_BATCH_HOST_LIST simpleFoam -parallel
+mpirun -np $np -ppn $ppn -hosts $AZ_BATCH_HOST_LIST simpleFoam #-parallel

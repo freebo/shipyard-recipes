@@ -39,7 +39,7 @@ ENV OPENFOAM_DIR=${FOAM_INST_DIR}/OpenFOAM-${OPENFOAM_VER}
 
 # copy sample run script
 COPY run_sample.sh ${FOAM_INST_DIR}
-COPY run_sample.sh.orig ${FOAM_INST_DIR}
+COPY run_job.sh ${FOAM_INST_DIR}
 
 # set up sshd on port 23
 EXPOSE 23
