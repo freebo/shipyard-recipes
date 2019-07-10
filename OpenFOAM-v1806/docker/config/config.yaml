@@ -1,0 +1,19 @@
+batch_shipyard:
+  storage_account_settings: ofdemosa
+global_resources:
+  docker_images:
+  #- alfpark/openfoam:4.0-icc-intelmpi
+  - freebo/openfoamplus-v1812-intelmpi
+  volumes:
+    shared_data_volumes:
+      azurefile_vol:
+        volume_driver: azurefile
+        storage_account_settings: ofdemosa
+        azure_file_share_name: ofdemofs
+        container_path: $AZ_BATCH_NODE_SHARED_DIR/azfile
+        mount_options:
+        - file_mode=0777
+        - dir_mode=0777
+        bind_options: rw
+
+
