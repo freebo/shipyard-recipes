@@ -5,7 +5,7 @@ job_specifications:
   shm_size: 256m
   tasks:
   #- docker_image: alfpark/openfoam:4.0-icc-intelmpi
-  - docker_image: freebo/openfoamplus-v1812-intelmpi
+  - docker_image: freebo/openfoamplus-v1806-intelmpi
     shared_data_volumes:
     - azurefile_vol
     multi_instance:
