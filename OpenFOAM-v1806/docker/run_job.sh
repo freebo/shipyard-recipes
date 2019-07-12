@@ -48,3 +48,6 @@ decomposePar -force
 # execute mpi job
 #mpirun -np $np -ppn $ppn -hosts $AZ_BATCH_HOST_LIST simpleFoam -parallel
 pisoFoam
+
+cd $BGFS_DIR
+cp -r $INPUT_DIR/$JOB .
