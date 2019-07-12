@@ -50,4 +50,4 @@ decomposePar -force
 pisoFoam
 
 cd $BGFS_DIR
-cp -r $INPUT_DIR/$JOB .
+cp -r * $OUTPUT_DIR/$JOB 
