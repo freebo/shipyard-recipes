@@ -7,7 +7,7 @@ pool_specification:
       sku: '7.4'
   vm_count:
     dedicated: 0
-    low_priority: 3
+    low_priority: 4
   vm_size: STANDARD_H16R
   inter_node_communication_enabled: true
   per_job_auto_scratch: true
