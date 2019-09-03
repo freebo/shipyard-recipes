@@ -13,5 +13,13 @@ pool_specification:
   per_job_auto_scratch: true
   ssh:
     username: shipyard
+  virtual_network: 
+    name: nfs-vnet
+    resource_group: remotefs-rg
+    create_nonexistant: true
+    address_space: 10.0.0.0/16
+    subnet:
+      name: batch-vm-subnet
+      address_prefix: 10.0.0.0/18
 
 

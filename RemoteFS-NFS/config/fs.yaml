@@ -1,0 +1,44 @@
+remote_fs:
+  resource_group: remotefs-rg
+  location: australiaeast
+  managed_disks:
+    sku: premium_lrs
+    disk_size_gb: 1023
+    disk_names:
+    - p30-disk0a
+    - p30-disk1a
+  storage_clusters:
+    nfs-storagecluster:
+      hostname_prefix: nfs-storagecluster
+      ssh:
+        username: shipyard
+      file_server:
+        mount_options:
+        - noatime
+        - nodiratime
+        mountpoint: /data
+        type: nfs
+      network_security:
+        nfs:
+        - 10.0.0.0/16
+        ssh:
+        - '*'
+      virtual_network:
+        address_space: 10.0.0.0/16
+        existing_ok: true
+        name: nfs-vnet
+        subnet:
+          address_prefix: 10.0.64.0/24
+          name: nfs-server-subnet
+      public_ip:
+        enabled: true
+        static: false
+      vm_count: 1
+      vm_size: STANDARD_F8S
+      vm_disk_map:
+        '0':
+          disk_array:
+          - p30-disk0a
+          - p30-disk1a
+          filesystem: btrfs
+          raid_level: 0
