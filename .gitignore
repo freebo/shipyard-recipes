@@ -6,3 +6,4 @@ stderr.txt
 *.tgz
 *.tar.gz
 config.py
+Python*
