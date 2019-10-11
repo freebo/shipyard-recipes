@@ -13,6 +13,17 @@ pool_specification:
   per_job_auto_scratch: true
   ssh:
     username: shipyard
+  input_data:
+    azure_storage:
+      - storage_account_settings: ofdemosa
+        remote_path: shipyard
+        local_path: $AZ_BATCH_NODE_SHARED_DIR/pooldata
+        is_file_share: false
+        exclude:
+        - '*.tmp'
+        include:
+        - pooldata*.bin
+        blobxfer_extra_options: null
   virtual_network: 
     name: nfs-vnet
     resource_group: remotefs-rg

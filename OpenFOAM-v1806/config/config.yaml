@@ -3,7 +3,8 @@ batch_shipyard:
 global_resources:
   docker_images:
   #- alfpark/openfoam:4.0-icc-intelmpi
-  - freebo/openfoamplus-v1806-intelmpi
+  #- freebo/openfoamplus-v1806-intelmpi
+  - jakubjs/azopenfoamv1806-intel
   volumes:
     shared_data_volumes:
       azurefile_vol:
