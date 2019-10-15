@@ -3,6 +3,15 @@ job_specifications:
   auto_complete: true
   auto_scratch: true
   shm_size: 256m
+  input_data:
+    azure_storage:
+      - storage_account_settings: ofdemosa
+        remote_path: shipyard
+        local_path: $AZ_BATCH_TASK_DIR/auto_scratch
+        is_file_share: false
+        exclude:
+        - '*.tmp'
+        blobxfer_extra_options: null
   tasks:
   #- docker_image: alfpark/openfoam:4.0-icc-intelmpi
   - docker_image: jakubjs/azopenfoamv1806-intel
@@ -10,7 +19,8 @@ job_specifications:
     - azurefile_vol
     multi_instance:
       num_instances: pool_current_low_priority
-    command:  /opt/OpenFOAM/run_sample.sh
+    command: sleep 300
+    #command:  /opt/OpenFOAM/run_sample.sh
     #command: /mnt/resource/batch/tasks/mounts/azfile-ofdemosa-ofdemofs/Input/OFtest/run_job.sh
     #command: /mnt/resource/batch/tasks/mounts/azfile-ofdemosa-ofdemofs/Input/OFtest/run_bgfs_sample.sh
 
