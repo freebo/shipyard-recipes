@@ -7,7 +7,14 @@ pool_specification:
       sku: '7.4'
   vm_count:
     dedicated: 0
-    low_priority: 4
+    low_priority: 0
+  autoscale:
+    evaluation_interval: 00:05:00
+    scenario:
+      name: active_tasks
+      maximum_vm_count:
+        dedicated: 0
+        low_priority: 2
   vm_size: STANDARD_H16R
   inter_node_communication_enabled: true
   per_job_auto_scratch: true
